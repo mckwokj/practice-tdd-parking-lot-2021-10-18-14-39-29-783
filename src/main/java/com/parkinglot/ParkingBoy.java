@@ -2,7 +2,6 @@ package com.parkinglot;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 import static com.parkinglot.ParkingLot.noAvailablePositionExceptionMsg;
 import static com.parkinglot.ParkingLot.unrecognizedParkingTicketExceptionMsg;
