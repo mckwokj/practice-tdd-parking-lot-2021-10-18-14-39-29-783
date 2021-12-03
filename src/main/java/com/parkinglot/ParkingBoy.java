@@ -17,4 +17,8 @@ public class ParkingBoy {
                 .get()
                 .park(car);
     }
+
+    public Car getCar(Ticket ticket) {
+        return null;
+    }
 }
