@@ -1,5 +1,6 @@
 package com.parkinglot;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -49,5 +50,31 @@ public class SmartParkingBoyTest {
 
     }
 
+    @Test
+    void should_return_the_right_car_with_each_ticket_when_get_car_twice_given_a_smart_parking_boy_manage_two_lots_both_with_parked_cars_and_two_parking_tickets() {
+        // given
+        ParkingLot firstParkingLot = new ParkingLot();
+        ParkingLot secondParkingLot = new ParkingLot();
 
+        Car firstCar = new Car();
+        Car secondCar = new Car();
+
+        Ticket firstTicket = firstParkingLot.park(firstCar);
+        Ticket secondTicket = secondParkingLot.park(secondCar);
+
+        List<ParkingLot> parkingLots = new ArrayList<>();
+
+        parkingLots.add(firstParkingLot);
+        parkingLots.add(secondParkingLot);
+
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+
+        // when
+        Car firstParkedCar = smartParkingBoy.getCar(firstTicket);
+        Car secondParkedCar = smartParkingBoy.getCar(secondTicket);
+
+        // then
+        assertEquals(firstCar, firstParkedCar);
+        assertEquals(secondCar, secondParkedCar);
+    }
 }
