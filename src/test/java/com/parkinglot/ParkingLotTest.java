@@ -65,5 +65,21 @@ public class ParkingLotTest {
         assertEquals(car2, parkedCar2);
     }
 
+    @Test
+    void should_return_null_when_get_car_given_a_parking_lot_and_a_used_parking_ticket() {
+        // given
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car();
+        Ticket ticket = parkingLot.park(car);
+        parkingLot.getCar(ticket);
+
+        // when
+        Car parkedCar = parkingLot.getCar(ticket);
+
+        // then
+        assertNull(parkedCar);
+    }
+
+
 
 }
