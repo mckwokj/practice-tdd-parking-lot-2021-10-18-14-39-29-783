@@ -5,6 +5,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.parkinglot.ParkingLot.noAvailablePositionExceptionMsg;
+
 public class SmartParkingBoy extends ParkingBoy{
     public SmartParkingBoy(List<ParkingLot> parkingLots) {
         super(parkingLots);
@@ -24,22 +26,24 @@ public class SmartParkingBoy extends ParkingBoy{
                     .map(ParkingLot::getAvailablePosition)
                     .collect(Collectors.toList());
 
-            int parkingLotsAvailablePositionsResult = parkingLotsAvailablePositions.stream()
-                    .reduce(availableParkingLots.get(0).getAvailablePosition(), (prevAvailablePosition, availablePosition) -> prevAvailablePosition.equals(availablePosition)
-                            ? availablePosition
-                            : -1);
+            if (availableParkingLots.size() != 0) {
+                int parkingLotsAvailablePositionsResult = parkingLotsAvailablePositions.stream()
+                        .reduce(availableParkingLots.get(0).getAvailablePosition(), (prevAvailablePosition, availablePosition) -> prevAvailablePosition.equals(availablePosition)
+                                ? availablePosition
+                                : -1);
 
-            if (parkingLotsAvailablePositionsResult != -1) {
-                return availableParkingLots.get(0).park(car);
-            } else {
-                return availableParkingLots.stream()
-                        .max(Comparator.comparing(parkingLot -> parkingLot.getAvailablePosition()))
-                        .get()
-                        .park(car);
+                if (parkingLotsAvailablePositionsResult != -1) {
+                    return availableParkingLots.get(0).park(car);
+                } else {
+                    return availableParkingLots.stream()
+                            .max(Comparator.comparing(parkingLot -> parkingLot.getAvailablePosition()))
+                            .get()
+                            .park(car);
+                }
             }
         }
 
-        return null;
+        throw new NoAvailablePositionException(noAvailablePositionExceptionMsg);
     }
 
     public static void main(String[] args) {
