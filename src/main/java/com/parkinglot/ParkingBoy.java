@@ -1,9 +1,9 @@
 package com.parkinglot;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ParkingBoy {
-    private ParkingLot parkingLot;
     private List<ParkingLot> parkingLots;
 
     public ParkingBoy(List<ParkingLot> parkingLots) {
@@ -19,6 +19,10 @@ public class ParkingBoy {
     }
 
     public Car getCar(Ticket ticket) {
-        return null;
+        return parkingLots.stream()
+                .filter(parkingLot -> parkingLot.isContainCar(ticket))
+                .findFirst()
+                .get()
+                .getCar(ticket);
     }
 }

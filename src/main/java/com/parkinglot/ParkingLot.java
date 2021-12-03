@@ -39,6 +39,10 @@ public class ParkingLot {
         throw new UnrecognizedParkingTicketException(unrecognizedParkingTicketExceptionMsg);
     }
 
+    public boolean isContainCar (Ticket ticket) {
+        return ticketCarMap.containsKey(ticket);
+    }
+
     public int getAvailablePosition() {
         return capacity - ticketCarMap.size();
     }
