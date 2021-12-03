@@ -24,6 +24,10 @@ public class ParkingLot {
         return null;
     }
 
+    public Car getCar(Ticket ticket) {
+        return null;
+    }
+
     private boolean hasAvailablePosition() {
         return ticketCarMap.size() < capacity;
     }
