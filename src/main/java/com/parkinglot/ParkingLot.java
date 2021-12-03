@@ -3,6 +3,8 @@ package com.parkinglot;
 import java.util.HashMap;
 
 public class ParkingLot {
+    public static final String noAvailablePositionExceptionMsg = "No available position.";
+    public static final String unrecognizedParkingTicketExceptionMsg = "Unrecognized Parking Ticket.";
     private final int DEFAULT_CAPACITY = 10;
     private HashMap<Ticket, Car> ticketCarMap = new HashMap<>();
     private int capacity;
@@ -24,7 +26,7 @@ public class ParkingLot {
             return ticket;
         }
 
-        throw new NoAvailablePositionException("No available position.");
+        throw new NoAvailablePositionException(noAvailablePositionExceptionMsg);
     }
 
     public Car getCar(Ticket ticket) {
@@ -34,6 +36,6 @@ public class ParkingLot {
             return car;
         }
 
-        throw new UnrecognizedParkingTicketException("Unrecognized Parking Ticket.");
+        throw new UnrecognizedParkingTicketException(unrecognizedParkingTicketExceptionMsg);
     }
 }
