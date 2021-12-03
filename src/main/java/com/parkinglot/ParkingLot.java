@@ -17,12 +17,13 @@ public class ParkingLot {
 
     public Ticket park(Car car) {
 //        if (hasAvailablePosition()) {
-//            Ticket ticket = new Ticket();
 //            ticketCarMap.put(ticket, car);
 //            return ticket;
 //        }
 
-        return null;
+        Ticket ticket = new Ticket();
+        return ticket;
+//        return null;
     }
 
 //    private boolean hasAvailablePosition() {
