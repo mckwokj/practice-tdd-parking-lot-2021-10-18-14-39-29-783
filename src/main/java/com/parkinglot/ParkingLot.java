@@ -25,14 +25,14 @@ public class ParkingLot {
     }
 
     public Car getCar(Ticket ticket) {
-        if (ticket != null) {
-            if (ticket.isUsed()) {
-                return null;
-            }
-            ticket.setUsed(true);
-            return ticketCarMap.get(ticket);
+        boolean isTicketNotExist = !ticketCarMap.containsKey(ticket);
+
+        if (isTicketNotExist || ticket.isUsed()) {
+            return null;
         }
-        return null;
+
+        ticket.setUsed(true);
+        return ticketCarMap.get(ticket);
     }
 
     private boolean hasAvailablePosition() {

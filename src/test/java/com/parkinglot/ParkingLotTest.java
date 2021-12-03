@@ -84,7 +84,7 @@ public class ParkingLotTest {
     void should_return_null_when_get_car_given_a_parking_lot_and_a_wrong_parking_ticket() {
         // given
         ParkingLot parkingLot = new ParkingLot();
-        Ticket wrongTicket = null;
+        Ticket wrongTicket = new Ticket();
 
         // when
         Car car = parkingLot.getCar(wrongTicket);
