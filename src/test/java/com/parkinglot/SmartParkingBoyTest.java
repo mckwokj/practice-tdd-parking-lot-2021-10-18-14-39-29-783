@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SmartParkingBoyTest {
     @Test
-    void should_park_to_the_first_parking_lot_when_park_car_given_a_smart_parking_boy_managing_two_lots_with_same_number_of_empty_positions() {
+    void should_park_to_the_first_parking_lot_when_park_car_given_a_smart_parking_boy_managing_two_lots_with_same_number_of_empty_positions_and_car() {
         // given
         ParkingLot firstParkingLot = new ParkingLot();
         ParkingLot secondParkingLot = new ParkingLot();
@@ -28,7 +28,7 @@ public class SmartParkingBoyTest {
     }
 
     @Test
-    void should_park_to_second_lot_when_park_car_given_a_smart_parking_boy_managing_two_lots_both_with_parked_car_and_second_have_more_positions() {
+    void should_park_to_second_lot_when_park_car_given_a_smart_parking_boy_managing_two_lots_both_with_parked_car_and_second_have_more_positions_and_car() {
         // given
         ParkingLot firstParkingLot = new ParkingLot();
         ParkingLot secondParkingLot = new ParkingLot();
@@ -129,7 +129,7 @@ public class SmartParkingBoyTest {
     }
 
     @Test
-    void should_throw_no_available_position_exception_when_park_car_given_a_smart_parking_boy_manage_two_lots_without_any_position() {
+    void should_throw_no_available_position_exception_when_park_car_given_a_smart_parking_boy_manage_two_lots_without_any_position_and_car() {
         // given
         ParkingLot firstParkingLot = new ParkingLot(1);
         ParkingLot secondParkingLot = new ParkingLot(1);
