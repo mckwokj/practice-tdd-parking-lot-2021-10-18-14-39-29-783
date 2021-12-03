@@ -26,7 +26,7 @@ public class ParkingBoy {
                     .get()
                     .park(car);
         } catch (NoSuchElementException exception) {
-            throw new UnrecognizedParkingTicketException(noAvailablePositionExceptionMsg);
+            throw new NoAvailablePositionException(noAvailablePositionExceptionMsg);
         }
     }
 
