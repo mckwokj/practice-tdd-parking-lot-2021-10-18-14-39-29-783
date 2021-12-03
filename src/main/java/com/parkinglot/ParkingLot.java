@@ -23,10 +23,17 @@ public class ParkingLot {
             ticketCarMap.put(ticket, car);
             return ticket;
         }
-        return null;
+
+        throw new NoAvailablePositionException("No available position.");
     }
 
     public Car getCar(Ticket ticket) {
-        return ticketCarMap.remove(ticket);
+        Car car = ticketCarMap.remove(ticket);
+
+        if (car != null) {
+            return car;
+        }
+
+        throw new UnrecognizedParkingTicketException("Unrecognized Parking Ticket.");
     }
 }

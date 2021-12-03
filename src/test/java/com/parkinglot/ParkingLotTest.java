@@ -18,17 +18,17 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_null_when_park_car_given_full_parking_lot_and_car() {
+    void should_return_throw_no_available_position_exception_when_park_car_given_full_parking_lot_and_car() {
         // given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();
         parkingLot.park(car);
 
         // when
-        Ticket ticket = parkingLot.park(car);
-
         // then
-        assertNull(ticket);
+        NoAvailablePositionException noAvailablePositionException = assertThrows(NoAvailablePositionException.class, () -> parkingLot.park(car));
+
+        assertEquals("No available position.", noAvailablePositionException.getMessage());
     }
     
     @Test
@@ -66,7 +66,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_null_when_get_car_given_a_parking_lot_and_a_used_parking_ticket() {
+    void should_return_throw_unrecognized_parking_ticket_exception_when_get_car_given_a_parking_lot_and_a_used_parking_ticket() {
         // given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
@@ -74,26 +74,9 @@ public class ParkingLotTest {
         parkingLot.getCar(ticket);
 
         // when
-        Car parkedCar = parkingLot.getCar(ticket);
-
         // then
-        assertNull(parkedCar);
+        UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, () -> parkingLot.getCar(ticket));
+
+        assertEquals("Unrecognized Parking Ticket.", unrecognizedParkingTicketException.getMessage());
     }
-
-    @Test
-    void should_return_null_when_get_car_given_a_parking_lot_and_a_wrong_parking_ticket() {
-        // given
-        ParkingLot parkingLot = new ParkingLot();
-        Ticket wrongTicket = new Ticket();
-
-        // when
-        Car car = parkingLot.getCar(wrongTicket);
-
-        // then
-        assertNull(car);
-    }
-
-
-
-
 }
