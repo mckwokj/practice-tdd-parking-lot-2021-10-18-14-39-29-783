@@ -1,6 +1,7 @@
 package com.parkinglot;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +31,11 @@ public class SmartParkingBoy extends ParkingBoy{
 
             if (parkingLotsAvailablePositionsResult != -1) {
                 return availableParkingLots.get(0).park(car);
+            } else {
+                return availableParkingLots.stream()
+                        .max(Comparator.comparing(parkingLot -> parkingLot.getAvailablePosition()))
+                        .get()
+                        .park(car);
             }
         }
 
