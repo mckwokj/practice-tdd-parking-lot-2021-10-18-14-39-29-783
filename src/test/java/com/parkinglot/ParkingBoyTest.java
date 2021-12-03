@@ -3,8 +3,7 @@ package com.parkinglot;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingBoyTest {
     @Test
@@ -73,5 +72,25 @@ public class ParkingBoyTest {
         assertEquals(secondCar, secondParkedCar);
     }
 
+    @Test
+    void should_throw_unrecognized_parking_ticket_exception_when_get_car_given_a_standard_parking_boy_manage_two_lots_an_unrecognized_ticket() {
+        // given
+        ParkingLot firstParkingLot = new ParkingLot();
+        ParkingLot secondParkingLot = new ParkingLot();
 
+        List<ParkingLot> parkingLots = new ArrayList<>();
+
+        parkingLots.add(firstParkingLot);
+        parkingLots.add(secondParkingLot);
+
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+
+        Ticket ticket = new Ticket();
+
+        // when
+        // then
+        UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class,
+                () -> parkingBoy.getCar(ticket));
+        assertEquals(ParkingLot.unrecognizedParkingTicketExceptionMsg, unrecognizedParkingTicketException.getMessage());
+    }
 }
