@@ -16,17 +16,15 @@ public class ParkingLot {
     }
 
     public Ticket park(Car car) {
-//        if (hasAvailablePosition()) {
+        if (hasAvailablePosition()) {
             Ticket ticket = new Ticket();
             ticketCarMap.put(ticket, car);
-//            return ticket;
-//        }
-
-        return ticket;
-//        return null;
+            return ticket;
+        }
+        return null;
     }
 
-//    private boolean hasAvailablePosition() {
-//        return ticketCarMap.size() < capacity;
-//    }
+    private boolean hasAvailablePosition() {
+        return ticketCarMap.size() < capacity;
+    }
 }
