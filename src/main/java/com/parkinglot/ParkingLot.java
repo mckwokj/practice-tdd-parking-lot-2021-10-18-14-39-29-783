@@ -30,8 +30,9 @@ public class ParkingLot {
                 return null;
             }
             ticket.setUsed(true);
+            return ticketCarMap.get(ticket);
         }
-        return ticketCarMap.get(ticket);
+        return null;
     }
 
     private boolean hasAvailablePosition() {
