@@ -25,7 +25,7 @@ public class ParkingLot {
     }
 
     public Car getCar(Ticket ticket) {
-        return null;
+        return ticketCarMap.get(ticket);
     }
 
     private boolean hasAvailablePosition() {
