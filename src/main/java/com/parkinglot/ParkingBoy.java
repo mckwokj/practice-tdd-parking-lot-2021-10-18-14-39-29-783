@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
+import static com.parkinglot.ParkingLot.noAvailablePositionExceptionMsg;
 import static com.parkinglot.ParkingLot.unrecognizedParkingTicketExceptionMsg;
 
 public class ParkingBoy {
@@ -14,11 +15,15 @@ public class ParkingBoy {
     }
 
     public Ticket park(Car car) {
-        return parkingLots.stream()
-                .filter(parkingLot -> parkingLot.getAvailablePosition() > 0)
-                .findFirst()
-                .get()
-                .park(car);
+        try {
+            return parkingLots.stream()
+                    .filter(parkingLot -> parkingLot.getAvailablePosition() > 0)
+                    .findFirst()
+                    .get()
+                    .park(car);
+        } catch (NoSuchElementException exception) {
+            throw new UnrecognizedParkingTicketException(noAvailablePositionExceptionMsg);
+        }
     }
 
     public Car getCar(Ticket ticket) {
