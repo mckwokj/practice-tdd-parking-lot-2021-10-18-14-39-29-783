@@ -81,7 +81,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_null_when_get_car_given_a_parking_lot_and_a_wrong_parking_ticket() {
+    void should_throw_unrecognized_parking_ticket_exception_when_get_car_given_a_parking_lot_and_a_wrong_parking_ticket() {
         // given
         ParkingLot parkingLot = new ParkingLot();
         Ticket ticket = new Ticket();
@@ -92,4 +92,5 @@ public class ParkingLotTest {
 
         assertEquals(ParkingLot.unrecognizedParkingTicketExceptionMsg, unrecognizedParkingTicketException.getMessage());
     }
+
 }

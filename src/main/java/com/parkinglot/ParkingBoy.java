@@ -1,7 +1,10 @@
 package com.parkinglot;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
+
+import static com.parkinglot.ParkingLot.unrecognizedParkingTicketExceptionMsg;
 
 public class ParkingBoy {
     private List<ParkingLot> parkingLots;
@@ -19,10 +22,14 @@ public class ParkingBoy {
     }
 
     public Car getCar(Ticket ticket) {
-        return parkingLots.stream()
-                .filter(parkingLot -> parkingLot.isContainCar(ticket))
-                .findFirst()
-                .get()
-                .getCar(ticket);
+        try {
+            return parkingLots.stream()
+                    .filter(parkingLot -> parkingLot.isContainCar(ticket))
+                    .findFirst()
+                    .get()
+                    .getCar(ticket);
+        } catch (NoSuchElementException exception) {
+            throw new UnrecognizedParkingTicketException(unrecognizedParkingTicketExceptionMsg);
+        }
     }
 }
