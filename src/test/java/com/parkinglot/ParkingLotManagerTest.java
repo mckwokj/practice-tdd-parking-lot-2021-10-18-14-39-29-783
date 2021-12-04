@@ -195,6 +195,35 @@ public class ParkingLotManagerTest {
         UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class,
                 () -> parkingLotManager.getCar(firstParkingBoy, ticket));
 
-        assertEquals(ParkingLot.unrecognizedParkingTicketExceptionMsg, unrecognizedParkingTicketException.getMessage());
+        assertEquals(ParkingLotManager.unrecognizedParkingTicketExceptionMsg, unrecognizedParkingTicketException.getMessage());
+    }
+
+    @Test
+    void should_throw_no_available_position_exception_when_park_car_given_a_manager_a_management_list_with_two_parking_boys_manage_two_lots_without_any_position() {
+        // given
+        ParkingLot firstBoyParkingLot = new ParkingLot(1);
+        ParkingLot secondBoyParkingLot = new ParkingLot(1);
+
+        firstBoyParkingLot.park(new Car());
+        secondBoyParkingLot.park(new Car());
+
+        List<ParkingLot> firstBoyParkingLots = new ArrayList<>();
+        List<ParkingLot> secondBoyParkingLots = new ArrayList<>();
+
+        firstBoyParkingLots.add(firstBoyParkingLot);
+        secondBoyParkingLots.add(secondBoyParkingLot);
+
+        ParkingBoy firstParkingBoy = new ParkingBoy(firstBoyParkingLots);
+        ParkingBoy secondParkingBoy = new ParkingBoy(secondBoyParkingLots);
+
+        List<ParkingBoy> parkingBoys = Arrays.asList(firstParkingBoy, secondParkingBoy);
+
+        ParkingLotManager parkingLotManager = new ParkingLotManager(null, parkingBoys);
+
+        // when
+        // then
+        NoAvailablePositionException noAvailablePositionException = assertThrows(NoAvailablePositionException.class, () ->
+                parkingLotManager.park(firstParkingBoy, new Car()));
+        assertEquals(ParkingLotManager.noAvailablePositionExceptionMsg, noAvailablePositionException.getMessage());
     }
 }
