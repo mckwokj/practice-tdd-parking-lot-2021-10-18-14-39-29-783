@@ -164,7 +164,7 @@ public class ParkingLotManagerTest {
         UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class,
                 () -> parkingLotManager.getCar(firstParkingBoy, ticket));
 
-        assertEquals(ParkingLot.unrecognizedParkingTicketExceptionMsg, unrecognizedParkingTicketException.getMessage());
+        assertEquals(ParkingLotManager.unrecognizedParkingTicketExceptionMsg, unrecognizedParkingTicketException.getMessage());
     }
     @Test
     void should_throw_unrecognized_parking_ticket_exception_when_get_car_given_a_manager_a_management_list_with_two_parking_boys_with_a_lot_an_used_ticket() {
