@@ -15,4 +15,11 @@ public class ParkingLotManager {
         }
         return null;
     }
+
+    public Car getCar(ParkingBoy parkingBoy, Ticket ticket) {
+        if (parkingBoys.contains(parkingBoy)) {
+            return parkingBoy.getCar(ticket);
+        }
+        return null;
+    }
 }
