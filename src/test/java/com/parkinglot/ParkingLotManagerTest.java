@@ -1,5 +1,6 @@
 package com.parkinglot;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,5 +30,43 @@ public class ParkingLotManagerTest {
         // then
         assertEquals(9, firstParkingLot.getAvailablePosition());
         assertEquals(10, secondParkingLot.getAvailablePosition());
+    }
+
+    @Test
+    void should_return_the_right_car_with_each_ticket_when_get_car_twice_given_a_parking_lot_manager_a_management_list_with_two_parking_boys_manage_two_lots_both_with_parked_cars_and_two_parking_tickets() {
+        // given
+        ParkingLot firstBoyParkingLot1 = new ParkingLot();
+        ParkingLot firstBoyParkingLot2 = new ParkingLot();
+        ParkingLot secondBoyParkingLot1 = new ParkingLot();
+        ParkingLot secondBoyParkingLot2 = new ParkingLot();
+
+        Car firstBoyCar1 = new Car();
+        Car firstBoyCar2 = new Car();
+        Car secondBoyCar1 = new Car();
+        Car secondBoyCar2 = new Car();
+
+        Ticket firstBoyLot1Ticket = firstBoyParkingLot1.park(firstBoyCar1);
+        firstBoyParkingLot2.park(firstBoyCar2);
+
+        Ticket secondBoyLot1Ticket = secondBoyParkingLot1.park(secondBoyCar1);
+        secondBoyParkingLot2.park(secondBoyCar2);
+
+        List<ParkingLot> firstBoyParkingLots = Arrays.asList(firstBoyParkingLot1, firstBoyParkingLot2);
+        List<ParkingLot> secondBoyParkingLots = Arrays.asList(secondBoyParkingLot1, secondBoyParkingLot2);
+
+        ParkingBoy firstParkingBoy = new ParkingBoy(firstBoyParkingLots);
+        ParkingBoy secondParkingBoy = new ParkingBoy(secondBoyParkingLots);
+
+        List<ParkingBoy> parkingBoys = Arrays.asList(firstParkingBoy, secondParkingBoy);
+
+        ParkingLotManager parkingLotManager = new ParkingLotManager(parkingBoys);
+
+        // when
+        Car firstParkedCar = parkingLotManager.getCar(firstParkingBoy, firstBoyLot1Ticket);
+        Car secondParkedCar = parkingLotManager.getCar(secondParkingBoy, secondBoyLot1Ticket);
+
+        // then
+        assertEquals(firstBoyCar1, firstParkedCar);
+        assertEquals(secondBoyCar1, secondParkedCar);
     }
 }
