@@ -5,8 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotManagerTest {
     @Test
@@ -136,5 +135,36 @@ public class ParkingLotManagerTest {
         assertEquals(secondCar, secondParkedCar);
     }
 
+    @Test
+    void should_throw_unrecognized_parking_ticket_exception_when_get_car_given_a_manager_a_management_list_with_two_parking_boys_with_a_lot_an_unrecognized_ticket() {
+        // given
+        ParkingLot firstBoyParkingLot = new ParkingLot();
+        ParkingLot secondBoyParkingLot = new ParkingLot();
+
+        firstBoyParkingLot.park(new Car());
+        secondBoyParkingLot.park(new Car());
+
+        List<ParkingLot> firstBoyParkingLots = new ArrayList<>();
+        List<ParkingLot> secondBoyParkingLots = new ArrayList<>();
+
+        firstBoyParkingLots.add(firstBoyParkingLot);
+        secondBoyParkingLots.add(secondBoyParkingLot);
+
+        ParkingBoy firstParkingBoy = new ParkingBoy(firstBoyParkingLots);
+        ParkingBoy secondParkingBoy = new ParkingBoy(secondBoyParkingLots);
+
+        List<ParkingBoy> parkingBoys = Arrays.asList(firstParkingBoy, secondParkingBoy);
+
+        ParkingLotManager parkingLotManager = new ParkingLotManager(null, parkingBoys);
+
+        Ticket ticket = new Ticket();
+
+        // when
+        // then
+        UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class,
+                () -> parkingLotManager.getCar(firstParkingBoy, ticket));
+
+        assertEquals(ParkingLot.unrecognizedParkingTicketExceptionMsg, unrecognizedParkingTicketException.getMessage());
+    }
 
 }

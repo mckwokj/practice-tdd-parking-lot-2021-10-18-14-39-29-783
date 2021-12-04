@@ -2,6 +2,8 @@ package com.parkinglot;
 
 import java.util.List;
 
+import static com.parkinglot.ParkingLot.unrecognizedParkingTicketExceptionMsg;
+
 public class ParkingLotManager extends ParkingBoy{
     private List<ParkingBoy> parkingBoys;
 
@@ -18,8 +20,12 @@ public class ParkingLotManager extends ParkingBoy{
     }
 
     public Car getCar(ParkingBoy parkingBoy, Ticket ticket) {
-        if (parkingBoys.contains(parkingBoy)) {
-            return parkingBoy.getCar(ticket);
+        try {
+            if (parkingBoys.contains(parkingBoy)) {
+                return parkingBoy.getCar(ticket);
+            }
+        } catch (UnrecognizedParkingTicketException unrecognizedParkingTicketException) {
+            throw new UnrecognizedParkingTicketException(unrecognizedParkingTicketExceptionMsg);
         }
         return null;
     }
