@@ -2,10 +2,11 @@ package com.parkinglot;
 
 import java.util.List;
 
-public class ParkingLotManager {
+public class ParkingLotManager extends ParkingBoy{
     private List<ParkingBoy> parkingBoys;
 
-    public ParkingLotManager(List<ParkingBoy> parkingBoys) {
+    public ParkingLotManager(List<ParkingLot> parkingLots, List<ParkingBoy> parkingBoys) {
+        super(parkingLots);
         this.parkingBoys = parkingBoys;
     }
 
