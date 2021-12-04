@@ -18,8 +18,12 @@ public class ParkingLotManager extends ParkingBoy{
     }
 
     public Ticket park(ParkingBoy parkingBoy, Car car) {
-        if (parkingBoys.contains(parkingBoy)) {
-            return parkingBoy.park(car);
+        try {
+            if (parkingBoys.contains(parkingBoy)) {
+                return parkingBoy.park(car);
+            }
+        } catch (NoAvailablePositionException exception) {
+            throw new NoAvailablePositionException(noAvailablePositionExceptionMsg);
         }
         return null;
     }
@@ -31,8 +35,6 @@ public class ParkingLotManager extends ParkingBoy{
             }
         } catch (UnrecognizedParkingTicketException unrecognizedParkingTicketException) {
             throw new UnrecognizedParkingTicketException(unrecognizedParkingTicketExceptionMsg);
-        } catch (NoSuchElementException exception) {
-            throw new NoAvailablePositionException(noAvailablePositionExceptionMsg);
         }
         return null;
     }
