@@ -18,26 +18,18 @@ public class ParkingBoy {
     }
 
     public Ticket park(Car car) {
-        try {
-            return parkingLots.stream()
-                    .filter(parkingLot -> parkingLot.getAvailablePosition() > 0)
-                    .findFirst()
-                    .get()
-                    .park(car);
-        } catch (NoSuchElementException exception) {
-            throw new NoAvailablePositionException(noAvailablePositionExceptionMsg);
-        }
+        return parkingLots.stream()
+                .filter(parkingLot -> parkingLot.getAvailablePositionCount() > 0)
+                .findFirst()
+                .orElseThrow(() -> new NoAvailablePositionException(noAvailablePositionExceptionMsg))
+                .park(car);
     }
 
     public Car getCar(Ticket ticket) {
-        try {
-            return parkingLots.stream()
-                    .filter(parkingLot -> parkingLot.isContainCar(ticket))
-                    .findFirst()
-                    .get()
-                    .getCar(ticket);
-        } catch (NoSuchElementException exception) {
-            throw new UnrecognizedParkingTicketException(unrecognizedParkingTicketExceptionMsg);
-        }
+        return parkingLots.stream()
+                .filter(parkingLot -> parkingLot.isContainCar(ticket))
+                .findFirst()
+                .orElseThrow(() -> new UnrecognizedParkingTicketException(unrecognizedParkingTicketExceptionMsg))
+                .getCar(ticket);
     }
 }

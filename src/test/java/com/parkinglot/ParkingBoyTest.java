@@ -40,8 +40,8 @@ public class ParkingBoyTest {
 
         // then
         assertNotNull(ticket);
-        assertEquals(9, firstParkingLot.getAvailablePosition());
-        assertEquals(10, secondParkingLot.getAvailablePosition());
+        assertEquals(9, firstParkingLot.getAvailablePositionCount());
+        assertEquals(10, secondParkingLot.getAvailablePositionCount());
     }
 
     @Test

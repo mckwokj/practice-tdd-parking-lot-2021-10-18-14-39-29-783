@@ -22,10 +22,11 @@ public class ParkingLotManager extends ParkingBoy{
             if (parkingBoys.contains(parkingBoy)) {
                 return parkingBoy.park(car);
             }
+            // throw an excep
         } catch (NoAvailablePositionException exception) {
             throw new NoAvailablePositionException(noAvailablePositionExceptionMsg);
         }
-        return null;
+        return null; // throw exception~, not suggested to return null -> NullPointExcep
     }
 
     public Car getCar(ParkingBoy parkingBoy, Ticket ticket) {

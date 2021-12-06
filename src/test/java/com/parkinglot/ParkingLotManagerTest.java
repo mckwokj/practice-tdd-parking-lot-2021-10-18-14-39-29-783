@@ -25,11 +25,11 @@ public class ParkingLotManagerTest {
         ParkingLotManager parkingLotManager = new ParkingLotManager(null, parkingBoys);
 
         // when
-        parkingLotManager.park(firstParkingBoy, new Car()); // first parking boy
+        parkingLotManager.park(firstParkingBoy, new Car());
 
         // then
-        assertEquals(9, firstParkingLot.getAvailablePosition());
-        assertEquals(10, secondParkingLot.getAvailablePosition());
+        assertEquals(9, firstParkingLot.getAvailablePositionCount());
+        assertEquals(10, secondParkingLot.getAvailablePositionCount());
     }
 
     @Test
@@ -104,8 +104,8 @@ public class ParkingLotManagerTest {
 
         // then
         assertNotNull(ticket);
-        assertEquals(9, firstParkingLot.getAvailablePosition());
-        assertEquals(10, secondParkingLot.getAvailablePosition());
+        assertEquals(9, firstParkingLot.getAvailablePositionCount());
+        assertEquals(10, secondParkingLot.getAvailablePositionCount());
     }
     @Test
     void should_return_the_right_car_with_each_ticket_when_get_car_twice_given_a_manager_manages_two_lots_both_with_parked_cars_and_two_parking_tickets() {

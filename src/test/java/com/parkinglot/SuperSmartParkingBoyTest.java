@@ -23,8 +23,8 @@ public class SuperSmartParkingBoyTest {
         superSmartParkingBoy.park(new Car());
 
         // then
-        assertEquals(9, firstParkingLot.getAvailablePosition());
-        assertEquals(10, secondParkingLot.getAvailablePosition());
+        assertEquals(9, firstParkingLot.getAvailablePositionCount());
+        assertEquals(10, secondParkingLot.getAvailablePositionCount());
     }
 
     @Test
@@ -46,8 +46,8 @@ public class SuperSmartParkingBoyTest {
         superSmartParkingBoy.park(new Car());
 
         // then
-        assertEquals(8, firstParkingLot.getAvailablePosition());
-        assertEquals(8, secondParkingLot.getAvailablePosition());
+        assertEquals(8, firstParkingLot.getAvailablePositionCount());
+        assertEquals(8, secondParkingLot.getAvailablePositionCount());
 
     }
 

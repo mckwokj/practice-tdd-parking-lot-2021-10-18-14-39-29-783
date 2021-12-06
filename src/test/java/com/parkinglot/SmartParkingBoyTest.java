@@ -23,12 +23,12 @@ public class SmartParkingBoyTest {
         smartParkingBoy.park(new Car());
 
         // then
-        assertEquals(9, firstParkingLot.getAvailablePosition());
-        assertEquals(10, secondParkingLot.getAvailablePosition());
+        assertEquals(9, firstParkingLot.getAvailablePositionCount());
+        assertEquals(10, secondParkingLot.getAvailablePositionCount());
     }
 
     @Test
-    void should_park_to_second_lot_when_park_car_given_a_smart_parking_boy_managing_two_lots_both_with_parked_car_and_second_have_more_positions_and_car() {
+    void should_park_to_lot_with_more_positions_when_park_car_given_a_smart_parking_boy_managing_two_lots_both_with_parked_car_and_second_have_more_positions_and_car() {
         // given
         ParkingLot firstParkingLot = new ParkingLot();
         ParkingLot secondParkingLot = new ParkingLot();
@@ -46,8 +46,8 @@ public class SmartParkingBoyTest {
         smartParkingBoy.park(new Car());
 
         // then
-        assertEquals(8, firstParkingLot.getAvailablePosition());
-        assertEquals(8, secondParkingLot.getAvailablePosition());
+        assertEquals(8, firstParkingLot.getAvailablePositionCount());
+        assertEquals(8, secondParkingLot.getAvailablePositionCount());
 
     }
 
